@@ -1,0 +1,3 @@
+### Fetch Products Records
+GET https://reqres.in/api/collections/products/records?project_id=28773
+x-api-key: pro_81594188e85702b2d046acadf678db7a2224024768b41a532b440a60d15b7261

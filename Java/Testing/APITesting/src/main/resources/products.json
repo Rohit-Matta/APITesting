@@ -1,0 +1,74 @@
+{
+  "data": [
+    {
+      "id": "593ebc2e-f104-4a33-a836-47add1d73baa",
+      "collection_id": "b142597b-097f-4142-bbae-8bf722266722",
+      "project_id": 28773,
+      "app_user_id": null,
+      "created_by": 122562,
+      "created_at": "2026-06-18T23:56:29.599Z",
+      "updated_at": "2026-06-18T23:56:29.599Z",
+      "deleted_at": null,
+      "data": {
+        "name": "Wireless Headphones",
+        "price": 59.99,
+        "category": "Electronics",
+        "in_stock": true
+      }
+    },
+    {
+      "id": "5eb4081f-82fa-44f1-a3f3-14d59019049a",
+      "collection_id": "b142597b-097f-4142-bbae-8bf722266722",
+      "project_id": 28773,
+      "app_user_id": null,
+      "created_by": 122562,
+      "created_at": "2026-06-10T00:18:45.631Z",
+      "updated_at": "2026-06-10T00:18:45.631Z",
+      "deleted_at": null,
+      "data": {
+        "name": "Wireless Headphones",
+        "price": 59.99,
+        "category": "Electronics",
+        "in_stock": true
+      }
+    },
+    {
+      "id": "2617f8a1-ba7f-4c06-9bb9-948512f841f7",
+      "collection_id": "b142597b-097f-4142-bbae-8bf722266722",
+      "project_id": 28773,
+      "app_user_id": null,
+      "created_by": 122562,
+      "created_at": "2026-06-10T00:18:45.631Z",
+      "updated_at": "2026-06-10T00:18:45.631Z",
+      "deleted_at": null,
+      "data": {
+        "name": "Leather Notebook",
+        "price": 24,
+        "category": "Stationery",
+        "in_stock": true
+      }
+    },
+    {
+      "id": "f459cb86-89d7-44b4-886b-8415e5baa320",
+      "collection_id": "b142597b-097f-4142-bbae-8bf722266722",
+      "project_id": 28773,
+      "app_user_id": null,
+      "created_by": 122562,
+      "created_at": "2026-06-10T00:18:45.631Z",
+      "updated_at": "2026-06-10T00:18:45.631Z",
+      "deleted_at": null,
+      "data": {
+        "name": "Cold Brew Coffee Kit",
+        "price": 38.5,
+        "category": "Food & Drink",
+        "in_stock": false
+      }
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 50,
+    "total": 4,
+    "pages": 1
+  }
+}
