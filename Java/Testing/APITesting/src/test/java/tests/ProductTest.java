@@ -34,6 +34,6 @@ public class ProductTest {
 
         Assert.assertNotNull(product, "Target product '" + targetName + "' not found in dataset!");
 
-        logger.info("Product match found. Target ID: {} | In Stock {}", product.getId(), product.isIn_stock());
+        logger.info("Product match found. Target ID: {} | In Stock {}", product.getId(), product.getProductDetails().isIn_stock());
     }
 }
