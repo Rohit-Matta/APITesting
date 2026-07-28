@@ -14,12 +14,12 @@ public class UserTest extends BaseTest {
         logger.info("testing testFetchUsers test case");
         UsersPOJO response = RestAssured
                 .given()
-                    .spec(requestSpec)
+                    .spec(readRequest)
                     .queryParam("page", 2)
                 .when()
                     .get("/users")
                 .then()
-                    .spec(responseSpec)
+                    .spec(readResponse)
                     .statusCode(200)
                     .body("page", equalTo(2))
                     .body("data", hasSize(6))
