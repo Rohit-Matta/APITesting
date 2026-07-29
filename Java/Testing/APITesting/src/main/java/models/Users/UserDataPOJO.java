@@ -1,7 +1,9 @@
 package models.Users;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDataPOJO {
     private int id;
     private String email;
