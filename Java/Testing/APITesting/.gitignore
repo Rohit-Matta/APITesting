@@ -1,17 +1,19 @@
 # ignore the IDE and config directories
 .idea/
-.DS_Store/
+.DS_Store
 .classpath/
 .settings/
 .project/
+__MACOSX/
+*.iml
 
 #ignore the following project directories
-target/
-test-output/
+/target/
+/test-output/
+
+# ignore config.properties file
+src/test/resources/config.properties
 
 # files from other dir
 ../../../Python/
 ../../../playwright/
-
-# ignore the following files
-.gitignore.save
