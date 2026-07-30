@@ -1,9 +1,14 @@
+package Products;
+
+import base.BaseTest;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.KeyType;
+import utils.UseKey;
 
 import java.util.Map;
 
@@ -13,7 +18,7 @@ public class ProductTest extends BaseTest {
     public void testFetchProducts() {
         RestAssured
                 .given()
-                    .spec(readRequest)
+                    .spec(requestSpec)
                     .queryParam("project_id", 28773)
                 .when()
                     .get("/collections/products/records")
@@ -21,6 +26,7 @@ public class ProductTest extends BaseTest {
                     .statusCode(200);
     }
 
+    @Test
     private Response createProduct(String name, double price, String category, boolean inStock) {
         Map<String, Object> payload = Map.of(
                 "data", Map.of(
@@ -32,7 +38,7 @@ public class ProductTest extends BaseTest {
         );
         return RestAssured
                 .given()
-                    .spec(writeRequest)
+                    .spec(requestSpec)
                     .body(payload)
                 .when()
                     .post("collections/products/records")
@@ -43,15 +49,13 @@ public class ProductTest extends BaseTest {
     }
 
     @Test
+    @UseKey(KeyType.PRIVATE)
     public void testCreateProduct() {
         log.info("testing data creation");
-        Response product1 = createProduct("electronic mouse", 25.99, "Electronics", true);
-        Response product2 = createProduct("notepad", 7.99, "Stationary", true);
+        Response product1 = createProduct("monitor", 299.00, "Electronics", true);
 
         Assert.assertEquals(product1.getStatusCode(), 201, "Product created successfully");
-        Assert.assertEquals(product2.getStatusCode(), 201, "Product created successfully");
 
         log.info("created record for product1: {}", product1.asString());
-        log.info("created record for product2: {}", product2.asString());
     }
 }

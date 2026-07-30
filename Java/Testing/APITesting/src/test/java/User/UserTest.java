@@ -1,3 +1,6 @@
+package User;
+
+import base.BaseTest;
 import io.restassured.RestAssured;
 import models.Users.UserDataPOJO;
 import models.Users.UsersPOJO;
@@ -14,12 +17,12 @@ public class UserTest extends BaseTest {
         logger.info("testing testFetchUsers test case");
         UsersPOJO response = RestAssured
                 .given()
-                    .spec(readRequest)
+                    .spec(requestSpec)
                     .queryParam("page", 2)
                 .when()
                     .get("/users")
                 .then()
-                    .spec(readResponse)
+                    .spec(responseSpec)
                     .statusCode(200)
                     .body("page", equalTo(2))
                     .body("data", hasSize(6))
