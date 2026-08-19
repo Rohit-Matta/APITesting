@@ -52,7 +52,10 @@ public class ProductTest extends BaseTest {
                     .extract()
                     .response();
     }
-
+    /*
+    Objective: Verify that a standard GET request with a valid public API key returns a 200 OK status and a paginated list of product records.
+    Assertions: Check statusCode(200), content-type is application/json, and verify response body contains key fields (id, title, price, created, updated).
+     */
     @Test
     @UseKey(KeyType.PUBLIC)
     public void validateProductList() {
@@ -105,7 +108,51 @@ public class ProductTest extends BaseTest {
             product.getProductDetails().isIn_stock()
             );
         }
-        log.info("Validated the response data, name and price");
+        log.info("Validated the response data, status code and content type.");
+    }
+    /*
+    Objective: Test filtering or pagination parameters (e.g., ?page=1&limit=10 or filtering by specific category/title).
+    Assertions: Verify the returned item count matches the specified limit and returned objects meet the filter criteria.
+     */
+    @Test
+    @UseKey(KeyType.PUBLIC)
+    public void validatePagination() {
+        int page = 1;
+        int limit = 10;
+
+        log.info("Provided the number of pages as {} and the limit per page as {}", page, limit);
+        Response response =
+                given()
+                    .spec(requestSpec)
+                    //.queryParam("project_id", 28773)
+                    .queryParam("page", page)
+                    .queryParam("limit", limit)
+                .when()
+                    .get("/collections/products/records")
+                .then()
+                    .statusCode(200)
+                    .body("meta.page", equalTo(page))
+                    .body("meta.limit", equalTo(limit))
+                        .body("data.size()", lessThanOrEqualTo(limit))
+                    .extract()
+                    .response();
+
+        int pageNumber = response.jsonPath().get("meta.page");
+        int pageSize = response.jsonPath().get("meta.limit");
+        int limitSize = response.jsonPath().get("data.size()");
+
+        Assert.assertSame(pageNumber, page, "number of pages is same");
+        Assert.assertSame(pageSize, limit, "number of elements per page is same");
+        Assert.assertTrue(limitSize <= limit, "data size is less than or equal to the limit");
+
+        log.info("The status code is {}.", response.getStatusCode());
+        log.info("The page number is {}.", pageNumber);
+        log.info("The page size is {}.", pageSize);
+        log.info("The data size {} is less than or equal to max limit {}.", limitSize, limit);
+    }
+
+    public void validateFiltering() {
+
     }
 
     @Test
