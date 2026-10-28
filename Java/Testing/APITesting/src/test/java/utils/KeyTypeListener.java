@@ -35,7 +35,6 @@ public class KeyTypeListener implements IInvokedMethodListener {
                         .addFilter(new ResponseLoggingFilter())
                         .build();
             }
-
         }
     }
 }
