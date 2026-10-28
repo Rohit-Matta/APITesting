@@ -1,6 +1,7 @@
 package Products;
 
 import base.BaseTest;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import models.product.ProductPOJO;
@@ -151,8 +152,25 @@ public class ProductTest extends BaseTest {
         log.info("The data size {} is less than or equal to max limit {}.", limitSize, limit);
     }
 
+    @Test
     public void validateFiltering() {
+        String filterVal = "Food & Drink";
+        RestAssured
+                .given()
+                    .spec(requestSpec)
+                    .queryParam("filter", "(category=",filterVal+")")
+                .when()
+                    .get("/collections/products/records")
+                .then()
+                    .statusCode(200)
+                    .contentType(ContentType.JSON)
+                .body("data", hasSize(greaterThan(0)))
+                .body("data[5].data.category",equalTo(filterVal))
+                .extract()
+                .response();
 
+        Assert.assertSame("data[5].data.category", filterVal, "filter value does not exist in the database");
+        log.info("Category value is {}.", filterVal);
     }
 
     @Test
